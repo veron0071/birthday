@@ -154,10 +154,6 @@
             transform: rotateY(0deg);
         }
         
-        .card.open .imgBox {
-            pointer-events: none;
-        }
-        
         .card .imgBox::before {
             content: '🎈';
             position: absolute;
@@ -462,24 +458,11 @@
             document.getElementById('instruction').classList.add('hide');
         }, 10000);
         
-        // Toggle kartu dengan JavaScript untuk memastikan berfungsi di HP
+        // Toggle kartu - solusi simple
         const card = document.getElementById('birthdayCard');
-        
-        // Hapus semua hover effect di mobile
-        if ('ontouchstart' in window) {
-            card.style.pointerEvents = 'auto';
-        }
         
         card.addEventListener('click', function(e) {
             this.classList.toggle('open');
-            console.log('Card clicked, open:', this.classList.contains('open'));
-        });
-        
-        // Tambahan: pastikan klik pada elemen anak juga toggle
-        card.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            this.classList.toggle('open');
-            console.log('Card touched, open:', this.classList.contains('open'));
         });
     </script>
 </body>
