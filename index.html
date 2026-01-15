@@ -278,7 +278,6 @@
             height: 100%;
             opacity: 0;
             transition: opacity .7s ease;
-            pointer-events: none;
         }
         
         .card:hover .imgBox {
@@ -310,6 +309,11 @@
             width: 100%;
             height: 100%;
             overflow-y: auto;
+            pointer-events: none;
+        }
+        
+        .card.open .details {
+            pointer-events: auto;
         }
         
         .card .details h4 {
@@ -460,10 +464,22 @@
         
         // Toggle kartu dengan JavaScript untuk memastikan berfungsi di HP
         const card = document.getElementById('birthdayCard');
+        
+        // Hapus semua hover effect di mobile
+        if ('ontouchstart' in window) {
+            card.style.pointerEvents = 'auto';
+        }
+        
         card.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
             this.classList.toggle('open');
+            console.log('Card clicked, open:', this.classList.contains('open'));
+        });
+        
+        // Tambahan: pastikan klik pada elemen anak juga toggle
+        card.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            this.classList.toggle('open');
+            console.log('Card touched, open:', this.classList.contains('open'));
         });
     </script>
 </body>
