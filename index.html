@@ -118,6 +118,14 @@
             height: 100%;
             z-index: 1000;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card.open .click-overlay {
+            opacity: 0;
+            pointer-events: none;
         }
         
         .card.open {
@@ -319,6 +327,11 @@
             width: 100%;
             height: 100%;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .card.open .details {
+            z-index: 500;
         }
         
         .card .details h4 {
@@ -468,21 +481,20 @@
             document.getElementById('instruction').classList.add('hide');
         }, 10000);
         
-        // Toggle kartu melalui overlay yang selalu di atas
+        // Toggle kartu - optimized untuk Safari iOS
         const card = document.getElementById('birthdayCard');
         const overlay = document.getElementById('clickOverlay');
         
-        overlay.addEventListener('click', function(e) {
-            e.stopPropagation();
+        function toggleCard() {
             card.classList.toggle('open');
-        });
+        }
         
-        // Untuk touchscreen
-        overlay.addEventListener('touchend', function(e) {
+        // Multiple event listeners untuk compatibility
+        overlay.addEventListener('click', toggleCard, false);
+        overlay.addEventListener('touchstart', function(e) {
             e.preventDefault();
-            e.stopPropagation();
-            card.classList.toggle('open');
-        });
+            toggleCard();
+        }, false);
     </script>
 </body>
 </html>
