@@ -16,13 +16,15 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #a8e6cf 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         
         @keyframes gradientShift {
