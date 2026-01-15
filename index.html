@@ -14,9 +14,9 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #a8e6cf 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
@@ -24,16 +24,16 @@
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
         
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
-        /* Confetti */
-        .confetti-container {
+        /* Floating Hearts */
+        .hearts-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,26 +41,73 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 8s ease-in infinite;
+        }
+        
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 25%; animation-delay: 1.5s; }
+        .heart:nth-child(3) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(4) { left: 55%; animation-delay: 0.7s; }
+        .heart:nth-child(5) { left: 70%; animation-delay: 2.2s; }
+        .heart:nth-child(6) { left: 85%; animation-delay: 1s; }
+        
+        @keyframes floatHeart {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg) scale(0.5);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+                transform: translateX(40px) rotate(360deg) scale(1);
+            }
+        }
+        
+        /* Enhanced Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
         }
         
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             top: -10px;
             opacity: 0;
-            animation: confetti-fall 4s linear infinite;
+            animation: confetti-fall 5s linear infinite;
+            border-radius: 2px;
         }
         
-        .confetti:nth-child(1) { left: 10%; background: #4facfe; animation-delay: 0s; }
-        .confetti:nth-child(2) { left: 20%; background: #ff6b9d; animation-delay: 0.5s; }
-        .confetti:nth-child(3) { left: 30%; background: #feca57; animation-delay: 1s; }
-        .confetti:nth-child(4) { left: 40%; background: #48dbfb; animation-delay: 1.5s; }
-        .confetti:nth-child(5) { left: 50%; background: #ff9ff3; animation-delay: 0.3s; }
-        .confetti:nth-child(6) { left: 60%; background: #54a0ff; animation-delay: 0.8s; }
-        .confetti:nth-child(7) { left: 70%; background: #feca57; animation-delay: 1.2s; }
-        .confetti:nth-child(8) { left: 80%; background: #ff6b9d; animation-delay: 0.6s; }
-        .confetti:nth-child(9) { left: 90%; background: #4facfe; animation-delay: 1.8s; }
+        .confetti:nth-child(1) { left: 5%; background: #ff6b9d; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 15%; background: #feca57; animation-delay: 0.8s; }
+        .confetti:nth-child(3) { left: 25%; background: #48dbfb; animation-delay: 1.6s; }
+        .confetti:nth-child(4) { left: 35%; background: #ff9ff3; animation-delay: 0.4s; }
+        .confetti:nth-child(5) { left: 45%; background: #54a0ff; animation-delay: 1.2s; }
+        .confetti:nth-child(6) { left: 55%; background: #feca57; animation-delay: 2s; }
+        .confetti:nth-child(7) { left: 65%; background: #ff6b9d; animation-delay: 0.6s; }
+        .confetti:nth-child(8) { left: 75%; background: #48dbfb; animation-delay: 1.4s; }
+        .confetti:nth-child(9) { left: 85%; background: #ff9ff3; animation-delay: 1.8s; }
+        .confetti:nth-child(10) { left: 95%; background: #54a0ff; animation-delay: 1s; }
         
         @keyframes confetti-fall {
             0% {
@@ -70,26 +117,33 @@
             }
             100% {
                 top: 100vh;
-                opacity: 0.7;
-                transform: translateX(50px) rotate(720deg);
+                opacity: 0.8;
+                transform: translateX(60px) rotate(720deg);
             }
         }
         
         .instruction {
             position: fixed;
-            top: 20px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             color: #fff;
-            background: rgba(79, 172, 254, 0.8);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 16px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
             z-index: 1000;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2) inset;
             opacity: 1;
-            transition: opacity 1s ease;
+            transition: opacity 1.5s ease;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
         }
         
         .instruction.hide {
@@ -99,30 +153,39 @@
         
         .gift-container {
             position: relative;
-            width: 350px;
-            height: 500px;
+            width: 380px;
+            height: 550px;
             z-index: 10;
         }
         
-        /* Kado Box */
+        /* Enhanced Gift Box */
         .gift-box {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px;
-            height: 200px;
+            width: 280px;
+            height: 220px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 100;
         }
         
+        .gift-box:hover {
+            transform: translateX(-50%) translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+        
         .gift-box.opened {
-            height: 100px;
+            height: 110px;
             bottom: 0;
+        }
+        
+        .gift-box.opened:hover {
+            transform: translateX(-50%) translateY(0);
         }
         
         /* Ribbon */
@@ -131,10 +194,10 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
+            width: 35px;
             height: 100%;
-            background: #ffd700;
-            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+            background: linear-gradient(to right, #ffd700, #ffed4e, #ffd700);
+            box-shadow: 0 0 20px rgba(255,215,0,0.6);
         }
         
         .ribbon-h {
@@ -143,109 +206,134 @@
             left: 0;
             transform: translateY(-50%);
             width: 100%;
-            height: 30px;
-            background: #ffd700;
-            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+            height: 35px;
+            background: linear-gradient(to bottom, #ffd700, #ffed4e, #ffd700);
+            box-shadow: 0 0 20px rgba(255,215,0,0.6);
         }
         
         /* Bow */
         .bow {
             position: absolute;
-            top: -20px;
+            top: -30px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 60px;
-            transition: all 0.5s ease;
+            font-size: 70px;
+            transition: all 0.6s ease;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+            animation: bowFloat 2s ease-in-out infinite;
+        }
+        
+        @keyframes bowFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
         }
         
         .gift-box.opened .bow {
-            transform: translateX(-50%) translateY(-30px) scale(0.5);
+            transform: translateX(-50%) translateY(-40px) scale(0.3) rotate(180deg);
             opacity: 0;
         }
         
         /* Lid */
         .gift-lid {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            width: calc(100% + 10px);
-            height: 60px;
+            top: -8px;
+            left: -8px;
+            width: calc(100% + 16px);
+            height: 70px;
             background: linear-gradient(135deg, #7b8cde 0%, #8e6bb9 100%);
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-origin: bottom;
         }
         
         .gift-box.opened .gift-lid {
-            transform: rotateX(-100deg) translateY(-20px);
-            opacity: 0.3;
+            transform: rotateX(-110deg) translateY(-25px);
+            opacity: 0.2;
         }
         
-        /* Paper Card */
+        /* Enhanced Paper Card */
         .paper-card {
             position: absolute;
-            bottom: 100px;
+            bottom: 120px;
             left: 50%;
-            transform: translateX(-50%) translateY(400px);
-            width: 320px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 30px 25px;
+            transform: translateX(-50%) translateY(500px) scale(0.8);
+            width: 350px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            padding: 35px 30px;
             opacity: 0;
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            max-height: 450px;
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-height: 480px;
             overflow-y: auto;
             z-index: 50;
+            border: 2px solid rgba(102, 126, 234, 0.1);
         }
         
         .gift-box.opened ~ .paper-card {
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
             opacity: 1;
-            transition-delay: 0.3s;
+            transition-delay: 0.4s;
         }
         
         .paper-card h2 {
             font-family: 'Pacifico', cursive;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 10px;
         }
         
+
+        
         .paper-card h3 {
             font-family: 'Pacifico', cursive;
-            color: #ff6b9d;
+            background: linear-gradient(135deg, #ff6b9d, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 25px;
         }
         
         .paper-card p {
             color: #333;
-            font-size: 14px;
-            line-height: 1.8;
-            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 16px;
             text-align: justify;
         }
         
         .paper-card .intro {
             font-weight: 600;
             color: #667eea;
+            font-size: 16px;
         }
         
         .paper-card .highlight {
-            color: #ff6b9d;
+            background: linear-gradient(135deg, #ff6b9d, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 600;
+            font-size: 17px;
         }
         
         .paper-card .years {
             text-align: center;
             color: #4facfe;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
-            margin: 20px 0;
+            margin: 25px 0;
+            padding: 15px;
+            border: 2px solid rgba(79, 172, 254, 0.4);
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 242, 254, 0.15));
         }
         
         .paper-card .signature {
@@ -253,7 +341,8 @@
             font-style: italic;
             color: #667eea;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
+            font-size: 15px;
         }
         
         .sparkles {
@@ -261,73 +350,100 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 30px;
+            font-size: 40px;
             opacity: 0;
             pointer-events: none;
         }
         
         .gift-box.opened .sparkles {
-            animation: sparkle-burst 1s ease-out;
+            animation: sparkle-burst 1.5s ease-out;
         }
         
         @keyframes sparkle-burst {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
             }
             50% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(2);
+                transform: translate(-50%, -50%) scale(2.5) rotate(180deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(3);
+                transform: translate(-50%, -50%) scale(4) rotate(360deg);
             }
+        }
+        
+        /* Custom Scrollbar */
+        .paper-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .paper-card::-webkit-scrollbar-track {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+        }
+        
+        .paper-card::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
         }
         
         @media (max-width: 768px) {
             .gift-container {
                 width: 100%;
-                max-width: 350px;
+                max-width: 380px;
             }
             
             .gift-box {
-                width: 220px;
-                height: 180px;
+                width: 240px;
+                height: 190px;
             }
             
             .gift-box.opened {
-                height: 90px;
+                height: 95px;
             }
             
             .paper-card {
-                width: 90%;
-                max-width: 320px;
-                padding: 25px 20px;
-                max-height: 400px;
+                width: 92%;
+                max-width: 350px;
+                padding: 28px 22px;
+                max-height: 420px;
             }
             
             .paper-card h2 {
-                font-size: 28px;
+                font-size: 30px;
             }
             
             .paper-card h3 {
-                font-size: 20px;
+                font-size: 22px;
             }
             
             .paper-card p {
-                font-size: 13px;
+                font-size: 14px;
             }
             
             .instruction {
-                font-size: 14px;
+                font-size: 16px;
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Floating Hearts -->
+    <div class="hearts-container">
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
+    
     <!-- Confetti -->
     <div class="confetti-container">
+        <div class="confetti"></div>
         <div class="confetti"></div>
         <div class="confetti"></div>
         <div class="confetti"></div>
@@ -349,11 +465,11 @@
             <div class="gift-lid"></div>
             <div class="ribbon-v"></div>
             <div class="ribbon-h"></div>
-            <div class="sparkles">✨💫⭐</div>
+            <div class="sparkles">✨💫⭐🌟</div>
         </div>
         
         <div class="paper-card">
-            <h2>🎉 Happy Birthday! 🎉</h2>
+            <h2>Happy Birthday!</h2>
             <h3>Anissa Cahyaningtyas</h3>
             
             <p class="intro">Untuk yang tersayang,</p>
@@ -373,12 +489,10 @@
     </div>
     
     <script>
-        // Hilangkan instruksi setelah 10 detik
         setTimeout(() => {
             document.getElementById('instruction').classList.add('hide');
-        }, 10000);
+        }, 12000);
         
-        // Toggle kado
         const giftBox = document.getElementById('giftBox');
         
         giftBox.addEventListener('click', function() {
