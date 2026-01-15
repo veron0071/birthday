@@ -228,7 +228,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: auto;
+            pointer-events: none;
             z-index: 5;
             overflow: hidden;
         }
@@ -241,14 +241,13 @@
             padding-bottom: 45px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             border-radius: 4px;
-            animation: floatPolaroid 20s ease-in-out infinite;
-            cursor: pointer;
+            animation: floatPolaroid 5s ease-in-out infinite;
             transition: all 0.3s ease;
+            pointer-events: none;
         }
         
         .polaroid:hover {
-            transform: scale(1.1) rotate(0deg) !important;
-            z-index: 100;
+            transform: scale(1.05) rotate(0deg) !important;
             box-shadow: 0 15px 50px rgba(0,0,0,0.6);
         }
         
@@ -259,16 +258,6 @@
             display: block;
             background: #f0f0f0;
             border-radius: 2px;
-        }
-        
-        .polaroid.zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(2.8) !important;
-            z-index: 1001;
-            animation: none;
-            box-shadow: 0 20px 80px rgba(0,0,0,0.8);
         }
         
         .polaroid-1 {
@@ -282,35 +271,29 @@
             top: 60%;
             left: 6%;
             transform: rotate(6deg);
-            animation-delay: 4s;
+            animation-delay: 1s;
         }
         
         .polaroid-3 {
             top: 18%;
             right: 10%;
             transform: rotate(10deg);
-            animation-delay: 8s;
+            animation-delay: 2s;
         }
         
         .polaroid-4 {
             top: 62%;
             right: 8%;
             transform: rotate(-7deg);
-            animation-delay: 12s;
+            animation-delay: 3s;
         }
         
         @keyframes floatPolaroid {
             0%, 100% {
                 transform: translateY(0) rotate(var(--rotate));
             }
-            25% {
-                transform: translateY(-20px) rotate(calc(var(--rotate) + 4deg));
-            }
             50% {
-                transform: translateY(-8px) rotate(calc(var(--rotate) - 3deg));
-            }
-            75% {
-                transform: translateY(-25px) rotate(calc(var(--rotate) + 6deg));
+                transform: translateY(-30px) rotate(var(--rotate));
             }
         }
         
@@ -640,8 +623,6 @@
             display: flex;
         }
         
-
-        
         /* Custom Scrollbar */
         .paper-card::-webkit-scrollbar {
             width: 10px;
@@ -659,22 +640,6 @@
         
         .paper-card::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #764ba2, #667eea);
-        }
-        
-        /* Overlay for zoomed photo */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 999;
-            display: none;
-        }
-        
-        .overlay.active {
-            display: block;
         }
         
         @media (max-width: 768px) {
@@ -745,10 +710,6 @@
                 top: 74%;
                 right: 3%;
             }
-            
-            .polaroid.zoomed {
-                transform: translate(-50%, -50%) scale(2.5) !important;
-            }
         }
     </style>
 </head>
@@ -797,8 +758,6 @@
             <img src="https://raw.githubusercontent.com/veron0071/birthday/main/IMG_3623.JPG" alt="Photo 4">
         </div>
     </div>
-    
-    <div class="overlay" id="overlay"></div>
     
     <!-- Confetti -->
     <div class="confetti-container" id="confettiContainer"></div>
@@ -881,36 +840,6 @@
         document.getElementById('closeBtn').addEventListener('click', function() {
             giftBox.classList.remove('opened');
             isOpened = false;
-        });
-        
-
-        // Polaroid zoom functionality
-        const polaroids = document.querySelectorAll('.polaroid');
-        const overlay = document.getElementById('overlay');
-        
-        polaroids.forEach(polaroid => {
-            polaroid.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                if (this.classList.contains('zoomed')) {
-                    this.classList.remove('zoomed');
-                    overlay.classList.remove('active');
-                } else {
-                    // Remove zoom from all polaroids
-                    polaroids.forEach(p => p.classList.remove('zoomed'));
-                    overlay.classList.remove('active');
-                    
-                    // Zoom this polaroid
-                    this.classList.add('zoomed');
-                    overlay.classList.add('active');
-                }
-            });
-        });
-        
-        // Close zoom when clicking overlay
-        overlay.addEventListener('click', function() {
-            polaroids.forEach(p => p.classList.remove('zoomed'));
-            overlay.classList.remove('active');
         });
     </script>
 </body>
