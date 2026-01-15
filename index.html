@@ -481,20 +481,36 @@
             document.getElementById('instruction').classList.add('hide');
         }, 10000);
         
-        // Toggle kartu - optimized untuk Safari iOS
+        // Toggle kartu - universal solution untuk semua device
         const card = document.getElementById('birthdayCard');
         const overlay = document.getElementById('clickOverlay');
         
-        function toggleCard() {
+        let isToggling = false;
+        
+        function toggleCard(e) {
+            if (isToggling) return;
+            isToggling = true;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
             card.classList.toggle('open');
+            
+            setTimeout(() => {
+                isToggling = false;
+            }, 100);
         }
         
-        // Multiple event listeners untuk compatibility
-        overlay.addEventListener('click', toggleCard, false);
-        overlay.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            toggleCard();
-        }, false);
+        // Event listeners untuk semua device
+        overlay.addEventListener('click', toggleCard);
+        overlay.addEventListener('touchend', toggleCard);
+        
+        // Untuk saat kartu terbuka, klik di area details juga bisa tutup
+        card.addEventListener('click', function(e) {
+            if (card.classList.contains('open') && e.target === card) {
+                toggleCard(e);
+            }
+        });
     </script>
 </body>
 </html>
