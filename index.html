@@ -242,13 +242,28 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             border-radius: 4px;
             animation: floatPolaroid 5s ease-in-out infinite;
+            cursor: pointer;
             transition: all 0.3s ease;
-            pointer-events: none;
+            pointer-events: auto;
         }
         
         .polaroid:hover {
-            transform: scale(1.05) rotate(0deg) !important;
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 100;
             box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+        }
+        
+        .polaroid.zoomed {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            bottom: auto !important;
+            right: auto !important;
+            transform: translate(-50%, -50%) scale(2.2) !important;
+            z-index: 2001;
+            animation: none;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
         .polaroid img {
@@ -261,29 +276,29 @@
         }
         
         .polaroid-1 {
-            top: 15%;
-            left: 8%;
+            top: 20%;
+            left: 5%;
             transform: rotate(-8deg);
             animation-delay: 0s;
         }
         
         .polaroid-2 {
-            top: 60%;
-            left: 6%;
+            bottom: 20%;
+            left: 3%;
             transform: rotate(6deg);
             animation-delay: 1s;
         }
         
         .polaroid-3 {
-            top: 18%;
-            right: 10%;
+            top: 20%;
+            right: 5%;
             transform: rotate(10deg);
             animation-delay: 2s;
         }
         
         .polaroid-4 {
-            top: 62%;
-            right: 8%;
+            bottom: 20%;
+            right: 3%;
             transform: rotate(-7deg);
             animation-delay: 3s;
         }
@@ -332,10 +347,46 @@
         }
         
         .gift-container {
-            position: relative;
+            position: fixed;
             width: 400px;
             height: 550px;
             z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .gift-container.move-to-1 {
+            top: 20% !important;
+            left: 5% !important;
+            bottom: auto !important;
+            right: auto !important;
+            transform: translate(0, 0) scale(0.7);
+        }
+        
+        .gift-container.move-to-2 {
+            bottom: 20% !important;
+            top: auto !important;
+            left: 3% !important;
+            right: auto !important;
+            transform: translate(0, 0) scale(0.7);
+        }
+        
+        .gift-container.move-to-3 {
+            top: 20% !important;
+            left: auto !important;
+            right: 5% !important;
+            bottom: auto !important;
+            transform: translate(0, 0) scale(0.7);
+        }
+        
+        .gift-container.move-to-4 {
+            bottom: 20% !important;
+            top: auto !important;
+            left: auto !important;
+            right: 3% !important;
+            transform: translate(0, 0) scale(0.7);
         }
         
         /* Enhanced Gift Box */
@@ -623,9 +674,20 @@
             display: flex;
         }
         
-        /* Custom Scrollbar */
-        .paper-card::-webkit-scrollbar {
-            width: 10px;
+        /* Overlay for zoomed photo */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
         }
         
         .paper-card::-webkit-scrollbar-track {
@@ -646,6 +708,37 @@
             .gift-container {
                 width: 100%;
                 max-width: 400px;
+            }
+            
+            .gift-container.move-to-1,
+            .gift-container.move-to-2,
+            .gift-container.move-to-3,
+            .gift-container.move-to-4 {
+                transform: scale(0.5) !important;
+            }
+            
+            .gift-container.move-to-1 {
+                top: 8% !important;
+                left: 2% !important;
+            }
+            
+            .gift-container.move-to-2 {
+                bottom: 8% !important;
+                top: auto !important;
+                left: 1% !important;
+            }
+            
+            .gift-container.move-to-3 {
+                top: 8% !important;
+                right: 2% !important;
+                left: auto !important;
+            }
+            
+            .gift-container.move-to-4 {
+                bottom: 8% !important;
+                top: auto !important;
+                right: 1% !important;
+                left: auto !important;
             }
             
             .gift-box {
@@ -693,22 +786,25 @@
             
             .polaroid-1 {
                 top: 8%;
-                left: 3%;
-            }
-            
-            .polaroid-2 {
-                top: 72%;
                 left: 2%;
             }
             
+            .polaroid-2 {
+                bottom: 8%;
+                left: 1%;
+            }
+            
             .polaroid-3 {
-                top: 10%;
-                right: 4%;
+                top: 8%;
+                right: 2%;
             }
             
             .polaroid-4 {
-                top: 74%;
-                right: 3%;
+                bottom: 8%;
+                right: 1%;
+            }
+            .polaroid.zoomed {
+                transform: translate(-50%, -50%) scale(2.0) !important;
             }
         }
     </style>
@@ -840,6 +936,31 @@
         document.getElementById('closeBtn').addEventListener('click', function() {
             giftBox.classList.remove('opened');
             isOpened = false;
+        });
+        
+        // Polaroid zoom functionality
+        const polaroids = document.querySelectorAll('.polaroid');
+        const giftContainer = document.querySelector('.gift-container');
+        
+        polaroids.forEach((polaroid, index) => {
+            polaroid.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                if (this.classList.contains('zoomed')) {
+                    // Unzoom
+                    this.classList.remove('zoomed');
+                    giftContainer.className = 'gift-container';
+                } else {
+                    // Remove zoom from all polaroids
+                    polaroids.forEach(p => p.classList.remove('zoomed'));
+                    
+                    // Zoom this polaroid
+                    this.classList.add('zoomed');
+                    
+                    // Move gift to polaroid position
+                    giftContainer.className = 'gift-container move-to-' + (index + 1);
+                }
+            });
         });
     </script>
 </body>
