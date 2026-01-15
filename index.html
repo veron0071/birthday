@@ -89,6 +89,13 @@
             z-index: 1000;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+        
+        .instruction.hide {
+            opacity: 0;
+            pointer-events: none;
         }
         
         .card {
@@ -401,11 +408,11 @@
         <div class="confetti"></div>
     </div>
     
-    <div class="instruction">
+    <div class="instruction" id="instruction">
         👆 Klik kartu untuk membuka 👆
     </div>
     
-    <div class="card" onclick="this.classList.toggle('open')">
+    <div class="card" id="birthdayCard">
         <div class="imgBox">
             <div class="bark"></div>
             <div class="decorative-stars">
@@ -444,5 +451,20 @@
             <p class="signature">- Veron Ihza Brammasta</p>
         </div>
     </div>
+    
+    <script>
+        // Hilangkan instruksi setelah 10 detik
+        setTimeout(function() {
+            document.getElementById('instruction').classList.add('hide');
+        }, 10000);
+        
+        // Toggle kartu dengan JavaScript untuk memastikan berfungsi di HP
+        const card = document.getElementById('birthdayCard');
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
