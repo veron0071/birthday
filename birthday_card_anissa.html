@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Anissa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card-container {
+            max-width: 800px;
+            width: 100%;
+            perspective: 1000px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '🎂';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .card-header::after {
+            content: '🎈';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            bottom: -10px;
+            left: -10px;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .card-header h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .card-header .name {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card-body {
+            padding: 50px 40px;
+            background: white;
+            position: relative;
+        }
+        
+        .message {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        .message p {
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            text-align: right;
+            font-size: 20px;
+            color: #4facfe;
+            font-weight: bold;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        
+        .decorative-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.1;
+            animation: floatHeart 6s ease-in-out infinite;
+        }
+        
+        .heart:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .heart:nth-child(2) { top: 60%; right: 5%; animation-delay: 1s; }
+        .heart:nth-child(3) { top: 30%; left: 85%; animation-delay: 2s; }
+        .heart:nth-child(4) { top: 80%; left: 10%; animation-delay: 3s; }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #4facfe;
+            position: absolute;
+            animation: confetti-fall 4s linear infinite;
+        }
+        
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        .footer-decor {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            font-size: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-header h1 {
+                font-size: 36px;
+            }
+            
+            .card-header .name {
+                font-size: 28px;
+            }
+            
+            .card-body {
+                padding: 30px 25px;
+            }
+            
+            .message {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>🎉 Happy Birthday 🎉</h1>
+                <div class="name">Anissa Cahyaningtyas</div>
+            </div>
+            
+            <div class="card-body">
+                <div class="decorative-hearts">
+                    <div class="heart">💙</div>
+                    <div class="heart">💙</div>
+                    <div class="heart">💙</div>
+                    <div class="heart">💙</div>
+                </div>
+                
+                <div class="message">
+                    <p><strong>Happy birthday, sayang!</strong> Semoga di usiamu yang baru ini kamu selalu sehat, bahagia, dan semua rencana serta impian kamu bisa terwujud. Semoga tahun ini bawa banyak hal baik buat kamu - karir yang makin cemerlang, kesehatan yang terjaga, dan kebahagiaan yang berlimpah.</p>
+                    
+                    <p>Nggak kerasa ya udah <strong>10 tahun</strong> kita bareng. Rasanya baru kemarin kita mulai, tapi ternyata udah sedekade aja. Thanks banget udah jadi bagian penting dalam hidup aku selama ini. Kamu udah nemenin aku di saat senang dan susah, udah jadi tempat cerita, temen ketawa, dan partner in crime aku.</p>
+                    
+                    <p>Semoga kita bisa terus bareng dan bikin lebih banyak kenangan indah lagi ke depannya. Enjoy your special day, you deserve all the best things!</p>
+                    
+                    <p><strong>Love you so much! 🎂❤️</strong></p>
+                </div>
+                
+                <div class="signature">
+                    - With all my love -
+                </div>
+            </div>
+            
+            <div class="footer-decor">
+                ✨ 10 Years Together ✨
+            </div>
+        </div>
+    </div>
+</body>
+</html>
