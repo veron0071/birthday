@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Anissa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,9 +14,9 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #4facfe 60%, #00f2fe 80%, #667eea 100%);
             background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            animation: gradientShift 15s ease infinite;
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
@@ -32,6 +32,44 @@
             50% { background-position: 100% 50%; }
         }
         
+        /* Particles Effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1);
+            }
+        }
+        
         /* Floating Hearts */
         .hearts-container {
             position: fixed;
@@ -40,23 +78,17 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
             overflow: hidden;
         }
         
         .heart {
             position: absolute;
-            font-size: 20px;
+            font-size: 24px;
             opacity: 0;
-            animation: floatHeart 8s ease-in infinite;
+            animation: floatHeart 10s ease-in infinite;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
         }
-        
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .heart:nth-child(2) { left: 25%; animation-delay: 1.5s; }
-        .heart:nth-child(3) { left: 40%; animation-delay: 3s; }
-        .heart:nth-child(4) { left: 55%; animation-delay: 0.7s; }
-        .heart:nth-child(5) { left: 70%; animation-delay: 2.2s; }
-        .heart:nth-child(6) { left: 85%; animation-delay: 1s; }
         
         @keyframes floatHeart {
             0% {
@@ -65,15 +97,15 @@
                 transform: translateX(0) rotate(0deg) scale(0.5);
             }
             20% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             80% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             100% {
                 bottom: 110vh;
                 opacity: 0;
-                transform: translateX(40px) rotate(360deg) scale(1);
+                transform: translateX(50px) rotate(360deg) scale(1.2);
             }
         }
         
@@ -85,38 +117,34 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
             overflow: hidden;
         }
         
         .balloon {
             position: absolute;
-            font-size: 35px;
+            font-size: 40px;
             opacity: 0;
-            animation: floatBalloon 12s ease-in infinite;
+            animation: floatBalloon 14s ease-in infinite;
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.3));
         }
-        
-        .balloon:nth-child(1) { left: 15%; animation-delay: 0s; }
-        .balloon:nth-child(2) { left: 45%; animation-delay: 3s; }
-        .balloon:nth-child(3) { left: 75%; animation-delay: 6s; }
-        .balloon:nth-child(4) { left: 30%; animation-delay: 9s; }
         
         @keyframes floatBalloon {
             0% {
                 bottom: -60px;
                 opacity: 0;
-                transform: translateX(0) rotate(-5deg) scale(0.8);
+                transform: translateX(0) rotate(-5deg) scale(0.7);
             }
             10% {
-                opacity: 0.9;
+                opacity: 0.95;
             }
             90% {
-                opacity: 0.9;
+                opacity: 0.95;
             }
             100% {
                 bottom: 110vh;
                 opacity: 0;
-                transform: translateX(-30px) rotate(5deg) scale(1);
+                transform: translateX(-40px) rotate(8deg) scale(1.1);
             }
         }
         
@@ -128,21 +156,17 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
             overflow: hidden;
         }
         
         .flower {
             position: absolute;
-            font-size: 25px;
+            font-size: 28px;
             opacity: 0;
-            animation: floatFlower 10s ease-in infinite;
+            animation: floatFlower 12s ease-in infinite;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
         }
-        
-        .flower:nth-child(1) { left: 8%; animation-delay: 0.5s; }
-        .flower:nth-child(2) { left: 35%; animation-delay: 2.5s; }
-        .flower:nth-child(3) { left: 62%; animation-delay: 4.5s; }
-        .flower:nth-child(4) { left: 88%; animation-delay: 1.5s; }
         
         @keyframes floatFlower {
             0% {
@@ -151,15 +175,49 @@
                 transform: translateX(0) rotate(0deg) scale(0.6);
             }
             15% {
-                opacity: 0.85;
+                opacity: 0.9;
             }
             85% {
-                opacity: 0.85;
+                opacity: 0.9;
             }
             100% {
                 bottom: 110vh;
                 opacity: 0;
-                transform: translateX(25px) rotate(180deg) scale(1);
+                transform: translateX(30px) rotate(180deg) scale(1.1);
+            }
+        }
+        
+        /* Enhanced Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            opacity: 0;
+            animation: confetti-fall 6s linear infinite;
+            border-radius: 2px;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                top: -10px;
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                top: 100vh;
+                opacity: 0.9;
+                transform: translateX(80px) rotate(720deg);
             }
         }
         
@@ -170,56 +228,74 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            pointer-events: auto;
             z-index: 5;
             overflow: hidden;
         }
         
         .polaroid {
             position: absolute;
-            width: 120px;
+            width: 130px;
             background: white;
-            padding: 10px;
-            padding-bottom: 40px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            border-radius: 3px;
+            padding: 12px;
+            padding-bottom: 45px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border-radius: 4px;
             animation: floatPolaroid 20s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 100;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
         }
         
         .polaroid img {
             width: 100%;
-            height: 100px;
+            height: 110px;
             object-fit: cover;
             display: block;
             background: #f0f0f0;
+            border-radius: 2px;
+        }
+        
+        .polaroid.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2.5) rotate(0deg) !important;
+            z-index: 1000;
+            animation: none;
         }
         
         .polaroid-1 {
             top: 15%;
-            left: 10%;
+            left: 8%;
             transform: rotate(-8deg);
             animation-delay: 0s;
         }
         
         .polaroid-2 {
             top: 60%;
-            left: 8%;
-            transform: rotate(5deg);
-            animation-delay: 3s;
+            left: 6%;
+            transform: rotate(6deg);
+            animation-delay: 4s;
         }
         
         .polaroid-3 {
-            top: 20%;
-            right: 12%;
+            top: 18%;
+            right: 10%;
             transform: rotate(10deg);
-            animation-delay: 6s;
+            animation-delay: 8s;
         }
         
         .polaroid-4 {
-            top: 65%;
-            right: 10%;
-            transform: rotate(-6deg);
-            animation-delay: 9s;
+            top: 62%;
+            right: 8%;
+            transform: rotate(-7deg);
+            animation-delay: 12s;
         }
         
         @keyframes floatPolaroid {
@@ -227,65 +303,20 @@
                 transform: translateY(0) rotate(var(--rotate));
             }
             25% {
-                transform: translateY(-15px) rotate(calc(var(--rotate) + 3deg));
+                transform: translateY(-20px) rotate(calc(var(--rotate) + 4deg));
             }
             50% {
-                transform: translateY(-5px) rotate(calc(var(--rotate) - 2deg));
+                transform: translateY(-8px) rotate(calc(var(--rotate) - 3deg));
             }
             75% {
-                transform: translateY(-20px) rotate(calc(var(--rotate) + 5deg));
+                transform: translateY(-25px) rotate(calc(var(--rotate) + 6deg));
             }
         }
         
         .polaroid-1 { --rotate: -8deg; }
-        .polaroid-2 { --rotate: 5deg; }
+        .polaroid-2 { --rotate: 6deg; }
         .polaroid-3 { --rotate: 10deg; }
-        .polaroid-4 { --rotate: -6deg; }
-        
-        /* Enhanced Confetti */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            top: -10px;
-            opacity: 0;
-            animation: confetti-fall 5s linear infinite;
-            border-radius: 2px;
-        }
-        
-        .confetti:nth-child(1) { left: 5%; background: #ff6b9d; animation-delay: 0s; }
-        .confetti:nth-child(2) { left: 15%; background: #feca57; animation-delay: 0.8s; }
-        .confetti:nth-child(3) { left: 25%; background: #48dbfb; animation-delay: 1.6s; }
-        .confetti:nth-child(4) { left: 35%; background: #ff9ff3; animation-delay: 0.4s; }
-        .confetti:nth-child(5) { left: 45%; background: #54a0ff; animation-delay: 1.2s; }
-        .confetti:nth-child(6) { left: 55%; background: #feca57; animation-delay: 2s; }
-        .confetti:nth-child(7) { left: 65%; background: #ff6b9d; animation-delay: 0.6s; }
-        .confetti:nth-child(8) { left: 75%; background: #48dbfb; animation-delay: 1.4s; }
-        .confetti:nth-child(9) { left: 85%; background: #ff9ff3; animation-delay: 1.8s; }
-        .confetti:nth-child(10) { left: 95%; background: #54a0ff; animation-delay: 1s; }
-        
-        @keyframes confetti-fall {
-            0% {
-                top: -10px;
-                opacity: 1;
-                transform: translateX(0) rotate(0deg);
-            }
-            100% {
-                top: 100vh;
-                opacity: 0.8;
-                transform: translateX(60px) rotate(720deg);
-            }
-        }
+        .polaroid-4 { --rotate: -7deg; }
         
         .instruction {
             position: fixed;
@@ -294,21 +325,21 @@
             transform: translateX(-50%);
             color: #fff;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
-            padding: 15px 30px;
+            padding: 16px 35px;
             border-radius: 30px;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 600;
             z-index: 1000;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2) inset;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.3) inset;
             opacity: 1;
             transition: opacity 1.5s ease;
-            animation: pulse 2s ease infinite;
+            animation: instructionPulse 2s ease infinite;
         }
         
-        @keyframes pulse {
+        @keyframes instructionPulse {
             0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
+            50% { transform: translateX(-50%) scale(1.08); }
         }
         
         .instruction.hide {
@@ -318,7 +349,7 @@
         
         .gift-container {
             position: relative;
-            width: 380px;
+            width: 400px;
             height: 550px;
             z-index: 10;
         }
@@ -329,28 +360,39 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 280px;
-            height: 220px;
+            width: 300px;
+            height: 230px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 15px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             cursor: pointer;
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 100;
+            animation: giftGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes giftGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 50px rgba(102, 126, 234, 0.6);
+            }
         }
         
         .gift-box:hover {
-            transform: translateX(-50%) translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            transform: translateX(-50%) translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 60px rgba(102, 126, 234, 0.8);
         }
         
         .gift-box.opened {
-            height: 110px;
+            height: 115px;
             bottom: 0;
+            animation: none;
         }
         
         .gift-box.opened:hover {
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
         
         /* Ribbon */
@@ -359,10 +401,10 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 35px;
+            width: 40px;
             height: 100%;
             background: linear-gradient(to right, #ffd700, #ffed4e, #ffd700);
-            box-shadow: 0 0 20px rgba(255,215,0,0.6);
+            box-shadow: 0 0 25px rgba(255,215,0,0.7);
         }
         
         .ribbon-h {
@@ -371,89 +413,111 @@
             left: 0;
             transform: translateY(-50%);
             width: 100%;
-            height: 35px;
+            height: 40px;
             background: linear-gradient(to bottom, #ffd700, #ffed4e, #ffd700);
-            box-shadow: 0 0 20px rgba(255,215,0,0.6);
+            box-shadow: 0 0 25px rgba(255,215,0,0.7);
         }
         
         /* Bow */
         .bow {
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 70px;
-            transition: all 0.6s ease;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
-            animation: bowFloat 2s ease-in-out infinite;
+            font-size: 75px;
+            transition: all 0.7s ease;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+            animation: bowFloat 2.5s ease-in-out infinite;
         }
         
         @keyframes bowFloat {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            50% { transform: translateX(-50%) translateY(-8px) rotate(-5deg); }
         }
         
         .gift-box.opened .bow {
-            transform: translateX(-50%) translateY(-40px) scale(0.3) rotate(180deg);
+            transform: translateX(-50%) translateY(-50px) scale(0.2) rotate(360deg);
             opacity: 0;
         }
         
         /* Lid */
         .gift-lid {
             position: absolute;
-            top: -8px;
-            left: -8px;
-            width: calc(100% + 16px);
-            height: 70px;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: 75px;
             background: linear-gradient(135deg, #7b8cde 0%, #8e6bb9 100%);
             border-radius: 15px 15px 0 0;
-            box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 -10px 35px rgba(0,0,0,0.4);
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-origin: bottom;
         }
         
         .gift-box.opened .gift-lid {
-            transform: rotateX(-110deg) translateY(-25px);
-            opacity: 0.2;
+            transform: rotateX(-120deg) translateY(-30px);
+            opacity: 0.15;
         }
         
         /* Enhanced Paper Card */
         .paper-card {
             position: absolute;
-            bottom: 120px;
+            bottom: 130px;
             left: 50%;
-            transform: translateX(-50%) translateY(500px) scale(0.8);
-            width: 350px;
+            transform: translateX(-50%) translateY(600px) scale(0.7) rotateY(90deg);
+            width: 370px;
             background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-            border-radius: 20px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
-            padding: 35px 30px;
+            border-radius: 25px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+            padding: 40px 35px;
             opacity: 0;
-            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            max-height: 480px;
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-height: 500px;
             overflow-y: auto;
             z-index: 50;
-            border: 2px solid rgba(102, 126, 234, 0.1);
+            border: 3px solid rgba(102, 126, 234, 0.2);
         }
         
         .gift-box.opened ~ .paper-card {
-            transform: translateX(-50%) translateY(0) scale(1);
+            transform: translateX(-50%) translateY(0) scale(1) rotateY(0deg);
             opacity: 1;
-            transition-delay: 0.4s;
+            transition-delay: 0.5s;
+            animation: cardEntrance 1s ease-out 0.5s;
+        }
+        
+        @keyframes cardEntrance {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(1) rotateY(90deg);
+            }
+            60% {
+                transform: translateX(-50%) translateY(0) scale(1.05) rotateY(-10deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0) scale(1) rotateY(0deg);
+            }
         }
         
         .paper-card h2 {
             font-family: 'Pacifico', cursive;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            animation: titleShine 3s ease-in-out infinite;
         }
         
-
+        @keyframes titleShine {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
         
         .paper-card h3 {
             font-family: 'Pacifico', cursive;
@@ -462,22 +526,22 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-align: center;
-            font-size: 26px;
-            margin-bottom: 25px;
+            font-size: 28px;
+            margin-bottom: 28px;
         }
         
         .paper-card p {
             color: #333;
             font-size: 15px;
-            line-height: 1.9;
-            margin-bottom: 16px;
+            line-height: 2;
+            margin-bottom: 18px;
             text-align: justify;
         }
         
         .paper-card .intro {
             font-weight: 600;
             color: #667eea;
-            font-size: 16px;
+            font-size: 17px;
         }
         
         .paper-card .highlight {
@@ -485,21 +549,31 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 600;
-            font-size: 17px;
+            font-weight: 700;
+            font-size: 18px;
         }
         
         .paper-card .years {
             text-align: center;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 700;
-            margin: 25px 0;
-            padding: 18px 30px;
-            border: 2px solid transparent;
+            margin: 28px 0;
+            padding: 20px 35px;
+            border: 3px solid transparent;
             border-radius: 50px;
             background: linear-gradient(white, white) padding-box,
                         linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) border-box;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            animation: yearsPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes yearsPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
         
         .paper-card .years span {
@@ -514,8 +588,8 @@
             font-style: italic;
             color: #667eea;
             font-weight: 600;
-            margin-top: 25px;
-            font-size: 15px;
+            margin-top: 28px;
+            font-size: 16px;
         }
         
         .sparkles {
@@ -523,13 +597,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 40px;
+            font-size: 50px;
             opacity: 0;
             pointer-events: none;
         }
         
         .gift-box.opened .sparkles {
-            animation: sparkle-burst 1.5s ease-out;
+            animation: sparkle-burst 2s ease-out;
         }
         
         @keyframes sparkle-burst {
@@ -539,17 +613,80 @@
             }
             50% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(2.5) rotate(180deg);
+                transform: translate(-50%, -50%) scale(3) rotate(180deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(4) rotate(360deg);
+                transform: translate(-50%, -50%) scale(5) rotate(360deg);
             }
+        }
+        
+        /* Close Button */
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        .gift-box.opened ~ .close-btn {
+            display: flex;
+        }
+        
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .audio-control:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .audio-control.muted {
+            background: rgba(255, 100, 100, 0.9);
+            color: white;
         }
         
         /* Custom Scrollbar */
         .paper-card::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         
         .paper-card::-webkit-scrollbar-track {
@@ -562,34 +699,54 @@
             border-radius: 10px;
         }
         
-                    @media (max-width: 768px) {
+        .paper-card::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+        
+        /* Overlay for zoomed photo */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
             .gift-container {
                 width: 100%;
-                max-width: 380px;
+                max-width: 400px;
             }
             
             .gift-box {
-                width: 240px;
-                height: 190px;
+                width: 260px;
+                height: 200px;
             }
             
             .gift-box.opened {
-                height: 95px;
+                height: 100px;
             }
             
             .paper-card {
-                width: 92%;
-                max-width: 350px;
-                padding: 28px 22px;
-                max-height: 420px;
+                width: 94%;
+                max-width: 370px;
+                padding: 32px 26px;
+                max-height: 450px;
             }
             
             .paper-card h2 {
-                font-size: 30px;
+                font-size: 34px;
             }
             
             .paper-card h3 {
-                font-size: 22px;
+                font-size: 24px;
             }
             
             .paper-card p {
@@ -597,67 +754,74 @@
             }
             
             .instruction {
-                font-size: 16px;
-                padding: 12px 25px;
+                font-size: 17px;
+                padding: 14px 28px;
             }
             
             .polaroid {
-                width: 90px;
-                padding: 8px;
-                padding-bottom: 30px;
+                width: 100px;
+                padding: 10px;
+                padding-bottom: 35px;
             }
             
             .polaroid img {
-                height: 80px;
+                height: 85px;
             }
             
             .polaroid-1 {
-                top: 10%;
-                left: 5%;
-            }
-            
-            .polaroid-2 {
-                top: 70%;
+                top: 8%;
                 left: 3%;
             }
             
+            .polaroid-2 {
+                top: 72%;
+                left: 2%;
+            }
+            
             .polaroid-3 {
-                top: 12%;
-                right: 5%;
+                top: 10%;
+                right: 4%;
             }
             
             .polaroid-4 {
-                top: 72%;
+                top: 74%;
                 right: 3%;
+            }
+            
+            .polaroid.zoomed {
+                transform: translate(-50%, -50%) scale(2) rotate(0deg) !important;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
     <!-- Floating Hearts -->
     <div class="hearts-container">
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
-        <div class="heart">💗</div>
-        <div class="heart">💝</div>
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
+        <div class="heart" style="left: 8%; animation-delay: 0s;">💖</div>
+        <div class="heart" style="left: 22%; animation-delay: 2s;">💕</div>
+        <div class="heart" style="left: 38%; animation-delay: 4s;">💗</div>
+        <div class="heart" style="left: 52%; animation-delay: 1s;">💝</div>
+        <div class="heart" style="left: 68%; animation-delay: 3s;">💖</div>
+        <div class="heart" style="left: 84%; animation-delay: 1.5s;">💕</div>
     </div>
     
     <!-- Balloons -->
     <div class="balloons-container">
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
+        <div class="balloon" style="left: 12%; animation-delay: 0s;">🎈</div>
+        <div class="balloon" style="left: 42%; animation-delay: 4s;">🎈</div>
+        <div class="balloon" style="left: 72%; animation-delay: 8s;">🎈</div>
+        <div class="balloon" style="left: 28%; animation-delay: 12s;">🎈</div>
     </div>
     
     <!-- Flowers -->
     <div class="flowers-container">
-        <div class="flower">🌸</div>
-        <div class="flower">🌺</div>
-        <div class="flower">🌼</div>
-        <div class="flower">🌷</div>
+        <div class="flower" style="left: 6%; animation-delay: 0.5s;">🌸</div>
+        <div class="flower" style="left: 32%; animation-delay: 3.5s;">🌺</div>
+        <div class="flower" style="left: 58%; animation-delay: 6.5s;">🌼</div>
+        <div class="flower" style="left: 86%; animation-delay: 2s;">🌷</div>
     </div>
     
     <!-- Floating Polaroid Photos -->
@@ -676,23 +840,16 @@
         </div>
     </div>
     
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Confetti -->
-    <div class="confetti-container">
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-    </div>
+    <div class="confetti-container" id="confettiContainer"></div>
     
     <div class="instruction" id="instruction">
         👆 Klik kado untuk membuka 👆
     </div>
+    
+    <button class="audio-control" id="audioControl">🔊</button>
     
     <div class="gift-container">
         <div class="gift-box" id="giftBox">
@@ -700,8 +857,10 @@
             <div class="gift-lid"></div>
             <div class="ribbon-v"></div>
             <div class="ribbon-h"></div>
-            <div class="sparkles">✨💫⭐🌟</div>
+            <div class="sparkles">✨💫⭐🌟💖</div>
         </div>
+        
+        <button class="close-btn" id="closeBtn">✕</button>
         
         <div class="paper-card">
             <h2>Happy Birthday!</h2>
@@ -723,15 +882,113 @@
         </div>
     </div>
     
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    
     <script>
+        // Particles generation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Confetti generation
+        const confettiContainer = document.getElementById('confettiContainer');
+        const colors = ['#ff6b9d', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff'];
+        for (let i = 0; i < 15; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 6 + 's';
+            confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            confettiContainer.appendChild(confetti);
+        }
+        
+        // Hide instruction after 3 seconds
         setTimeout(() => {
             document.getElementById('instruction').classList.add('hide');
         }, 3000);
         
+        // Gift box toggle
         const giftBox = document.getElementById('giftBox');
+        const bgMusic = document.getElementById('bgMusic');
+        let isOpened = false;
         
         giftBox.addEventListener('click', function() {
             this.classList.toggle('opened');
+            isOpened = !isOpened;
+            
+            if (isOpened) {
+                // Play sound effect
+                const openSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTUIGWi78OScTQQMT6Xh8LhjHwU3j9T0zHgrBSh+ye/ejz8KFlyw6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FN4/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxPpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMT6Xh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxPpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OSYTAQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBQ==');
+                openSound.play().catch(() => {});
+                
+                // Start background music
+                bgMusic.play().catch(() => {});
+            }
+        });
+        
+        // Close button
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            giftBox.classList.remove('opened');
+            isOpened = false;
+        });
+        
+        // Audio control
+        const audioControl = document.getElementById('audioControl');
+        let isMuted = false;
+        
+        audioControl.addEventListener('click', function() {
+            isMuted = !isMuted;
+            bgMusic.muted = isMuted;
+            
+            if (isMuted) {
+                this.textContent = '🔇';
+                this.classList.add('muted');
+            } else {
+                this.textContent = '🔊';
+                this.classList.remove('muted');
+                if (isOpened) {
+                    bgMusic.play().catch(() => {});
+                }
+            }
+        });
+        
+        // Polaroid zoom functionality
+        const polaroids = document.querySelectorAll('.polaroid');
+        const overlay = document.getElementById('overlay');
+        
+        polaroids.forEach(polaroid => {
+            polaroid.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                if (this.classList.contains('zoomed')) {
+                    this.classList.remove('zoomed');
+                    overlay.classList.remove('active');
+                } else {
+                    // Remove zoom from all polaroids
+                    polaroids.forEach(p => p.classList.remove('zoomed'));
+                    overlay.classList.remove('active');
+                    
+                    // Zoom this polaroid
+                    this.classList.add('zoomed');
+                    overlay.classList.add('active');
+                }
+            });
+        });
+        
+        // Close zoom when clicking overlay
+        overlay.addEventListener('click', function() {
+            polaroids.forEach(p => p.classList.remove('zoomed'));
+            overlay.classList.remove('active');
         });
     </script>
 </body>
