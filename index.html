@@ -652,37 +652,7 @@
             display: flex;
         }
         
-        /* Audio Control */
-        .audio-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .audio-control:hover {
-            background: #667eea;
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .audio-control.muted {
-            background: rgba(255, 100, 100, 0.9);
-            color: white;
-        }
+
         
         /* Custom Scrollbar */
         .paper-card::-webkit-scrollbar {
@@ -849,8 +819,6 @@
         👆 Klik kado untuk membuka 👆
     </div>
     
-    <button class="audio-control" id="audioControl">🔊</button>
-    
     <div class="gift-container">
         <div class="gift-box" id="giftBox">
             <div class="bow">🎀</div>
@@ -881,11 +849,6 @@
             <p class="signature">Love you so much! 🎂❤️<br>- Veron Ihza Brammasta</p>
         </div>
     </div>
-    
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
     
     <script>
         // Particles generation
@@ -919,21 +882,11 @@
         
         // Gift box toggle
         const giftBox = document.getElementById('giftBox');
-        const bgMusic = document.getElementById('bgMusic');
         let isOpened = false;
         
         giftBox.addEventListener('click', function() {
             this.classList.toggle('opened');
             isOpened = !isOpened;
-            
-            if (isOpened) {
-                // Play sound effect
-                const openSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTUIGWi78OScTQQMT6Xh8LhjHwU3j9T0zHgrBSh+ye/ejz8KFlyw6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FN4/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxPpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMT6Xh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxPpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OScTQQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBSuBzvLZiTUIGWi78OSYTAQMUKXh8LhjHwU4j9T0zHgrBSh+ye/ejz8KF1yo6OysWBELRJzd8r1tIQUrgc7y2Yk1CBlou/DknE0EDFCl4fC4Yx8FOI/U9Mx4KwUofsnv3o8/ChdcqOjsrFgRC0Sc3fK9bSEFK4HO8tmJNQgZaLvw5JxNBAxQpeHwuGMfBTiP1PTMeCsFKH7J796PPwoXXKjo7KxYEQtEnN3yvW0hBQ==');
-                openSound.play().catch(() => {});
-                
-                // Start background music
-                bgMusic.play().catch(() => {});
-            }
         });
         
         // Close button
@@ -942,26 +895,7 @@
             isOpened = false;
         });
         
-        // Audio control
-        const audioControl = document.getElementById('audioControl');
-        let isMuted = false;
-        
-        audioControl.addEventListener('click', function() {
-            isMuted = !isMuted;
-            bgMusic.muted = isMuted;
-            
-            if (isMuted) {
-                this.textContent = '🔇';
-                this.classList.add('muted');
-            } else {
-                this.textContent = '🔊';
-                this.classList.remove('muted');
-                if (isOpened) {
-                    bgMusic.play().catch(() => {});
-                }
-            }
-        });
-        
+
         // Polaroid zoom functionality
         const polaroids = document.querySelectorAll('.polaroid');
         const overlay = document.getElementById('overlay');
