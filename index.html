@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Anissa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,22 +12,19 @@
             box-sizing: border-box;
         }
         
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: auto;
-            min-height: 100vh;
-        }
-        
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Indie Flower', cursive;
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #a8e6cf 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
             position: relative;
-            box-sizing: border-box;
+            overflow: hidden;
         }
         
         @keyframes gradientShift {
@@ -35,223 +33,292 @@
             100% { background-position: 0% 50%; }
         }
         
-        .card-container {
-            max-width: 800px;
-            width: 100%;
-            perspective: 1000px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .card-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 60px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-header::before {
-            content: '🎂';
-            position: absolute;
-            font-size: 150px;
-            opacity: 0.1;
-            top: -20px;
-            right: -20px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .card-header::after {
-            content: '🎈';
-            position: absolute;
-            font-size: 100px;
-            opacity: 0.1;
-            bottom: -10px;
-            left: -10px;
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .card-header h1 {
-            color: white;
-            font-size: 48px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            animation: fadeInDown 1s ease;
-        }
-        
-        .card-header .name {
-            color: white;
-            font-size: 36px;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease 0.3s backwards;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .card-body {
-            padding: 50px 40px;
-            background: white;
-            position: relative;
-        }
-        
-        .message {
-            color: #333;
-            font-size: 18px;
-            line-height: 1.8;
-            text-align: justify;
-            margin-bottom: 20px;
-        }
-        
-        .message p {
-            margin-bottom: 20px;
-        }
-        
-        .signature {
-            text-align: right;
-            font-size: 20px;
-            color: #4facfe;
-            font-weight: bold;
-            margin-top: 30px;
-            font-style: italic;
-        }
-        
-        .decorative-hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        /* Confetti Animation */
+        .confetti-container {
+            position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0.1;
-            animation: floatHeart 6s ease-in-out infinite;
-        }
-        
-        .heart:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
-        .heart:nth-child(2) { top: 60%; right: 5%; animation-delay: 1s; }
-        .heart:nth-child(3) { top: 30%; left: 85%; animation-delay: 2s; }
-        .heart:nth-child(4) { top: 80%; left: 10%; animation-delay: 3s; }
-        
-        @keyframes floatHeart {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+            z-index: 1;
         }
         
         .confetti {
-            position: fixed;
+            position: absolute;
             width: 10px;
             height: 10px;
-            background: #4facfe;
-            position: absolute;
+            top: -10px;
+            opacity: 0;
             animation: confetti-fall 4s linear infinite;
         }
         
+        .confetti:nth-child(1) { left: 10%; background: #4facfe; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; background: #ff6b9d; animation-delay: 0.5s; }
+        .confetti:nth-child(3) { left: 30%; background: #feca57; animation-delay: 1s; }
+        .confetti:nth-child(4) { left: 40%; background: #48dbfb; animation-delay: 1.5s; }
+        .confetti:nth-child(5) { left: 50%; background: #ff9ff3; animation-delay: 0.3s; }
+        .confetti:nth-child(6) { left: 60%; background: #54a0ff; animation-delay: 0.8s; }
+        .confetti:nth-child(7) { left: 70%; background: #feca57; animation-delay: 1.2s; }
+        .confetti:nth-child(8) { left: 80%; background: #ff6b9d; animation-delay: 0.6s; }
+        .confetti:nth-child(9) { left: 90%; background: #4facfe; animation-delay: 1.8s; }
+        
         @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
+            0% {
+                top: -10px;
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                top: 100vh;
+                opacity: 0.7;
+                transform: translateX(50px) rotate(720deg);
             }
         }
         
-        .footer-decor {
+        .instruction {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(79, 172, 254, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            z-index: 1000;
             text-align: center;
-            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card {
+            color: #013243;
+            position: relative;
+            width: 350px;
+            height: 500px;
+            background: #e0e1dc;
+            transform-style: preserve-3d;
+            transform: perspective(2000px);
+            box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+            transition: 1s;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .card:hover {
+            transform: perspective(2000px) rotate(15deg) scale(1.1);
+            box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+        }
+        
+        .card:before {
+            content:'';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #BAC1BA;
+            transform-origin: bottom;
+            transform: skewX(-45deg);
+        }
+        
+        .card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #92A29C;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+        
+        .card .imgBox {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-origin: left;
+            transition: .7s;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card .imgBox h1 {
             color: white;
+            font-size: 48px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Amatic SC', cursive;
+            margin-bottom: 10px;
+        }
+        
+        .card .imgBox .name {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Amatic SC', cursive;
+        }
+        
+        .card .imgBox .emoji {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+        
+        .card .bark {
+            position: absolute;
+            background: #e0e1dc;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .7s;
+        }
+        
+        .card:hover .imgBox {
+            transform: rotateY(-135deg);
+        }
+        
+        .card:hover .bark {
+            opacity: 1;
+            transition: .6s;
+            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+        }
+        
+        .card .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            padding: 20px 15px;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .card .details h4 {
+            font-size: 28px;
+            line-height: 1.3;
+            font-family: 'Amatic SC', cursive;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .card .details .color1 {
+            color: #1BBC9B;
+        }
+        
+        .card .details .color2 {
+            color: #C0392B;
+        }
+        
+        .card .details p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 8px 0;
+            transform: rotate(-2deg);
+            padding: 0 10px;
+        }
+        
+        .card .details p.intro {
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        .card .details .signature {
+            text-align: right;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .card .details .years {
+            text-align: center;
+            color: #4facfe;
             font-size: 24px;
+            font-family: 'Amatic SC', cursive;
+            margin-top: 15px;
         }
         
         @media (max-width: 768px) {
-            .card-header h1 {
+            .card {
+                width: 300px;
+                height: 450px;
+            }
+            
+            .card .imgBox h1 {
                 font-size: 36px;
             }
             
-            .card-header .name {
+            .card .imgBox .name {
                 font-size: 28px;
             }
             
-            .card-body {
-                padding: 30px 25px;
+            .card .details p {
+                font-size: 13px;
             }
             
-            .message {
-                font-size: 16px;
+            .instruction {
+                font-size: 14px;
+                padding: 8px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card-container">
-        <div class="card">
-            <div class="card-header">
-                <h1>🎉 Happy Birthday 🎉</h1>
-                <div class="name">Anissa Cahyaningtyas</div>
-            </div>
+    <!-- Confetti Animation -->
+    <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+    
+    <div class="instruction">
+        👆 Hover/Sentuh kartu untuk membuka 👆
+    </div>
+    
+    <div class="card">
+        <div class="imgBox">
+            <div class="bark"></div>
+            <h1>🎉 Happy Birthday 🎉</h1>
+            <div class="emoji">🎂</div>
+            <div class="name">Anissa Cahyaningtyas</div>
+        </div>
+        <div class="details">
+            <h4 class="color1">Happy Birthday Sayang! 🎈</h4>
+            <h4 class="color2">Selamat Ulang Tahun!</h4>
             
-            <div class="card-body">
-                <div class="decorative-hearts">
-                    <div class="heart">💙</div>
-                    <div class="heart">💙</div>
-                    <div class="heart">💙</div>
-                    <div class="heart">💙</div>
-                </div>
-                
-                <div class="message">
-                    <p><strong>Happy birthday, sayang!</strong> Semoga di usiamu yang baru ini kamu selalu sehat, bahagia, dan semua rencana serta impian kamu bisa terwujud. Semoga tahun ini bawa banyak hal baik buat kamu - karir yang makin cemerlang, kesehatan yang terjaga, dan kebahagiaan yang berlimpah.</p>
-                    
-                    <p>Nggak kerasa ya udah <strong>10 tahun</strong> kita bareng. Rasanya baru kemarin kita mulai, tapi ternyata udah sedekade aja. Thanks banget udah jadi bagian penting dalam hidup aku selama ini. Kamu udah nemenin aku di saat senang dan susah, udah jadi tempat cerita, temen ketawa, dan partner in crime aku.</p>
-                    
-                    <p>Semoga kita bisa terus bareng dan bikin lebih banyak kenangan indah lagi ke depannya. Enjoy your special day, you deserve all the best things!</p>
-                    
-                    <p><strong>Love you so much! 🎂❤️</strong></p>
-                </div>
-                
-                <div class="signature">
-                    - With all my love -<br>
-                    <span style="font-size: 24px; margin-top: 10px; display: block;">Veron Ihza Brammasta</span>
-                </div>
-            </div>
+            <p class="intro">Untuk yang tersayang,</p>
             
-            <div class="footer-decor">
-                ✨ 10 Years Together ✨
-            </div>
+            <p>Semoga di usiamu yang baru ini kamu selalu sehat, bahagia, dan semua rencana serta impian kamu bisa terwujud.</p>
+            
+            <p>Semoga tahun ini bawa banyak hal baik buat kamu - karir yang makin cemerlang, kesehatan yang terjaga, dan kebahagiaan yang berlimpah.</p>
+            
+            <p>Nggak kerasa ya udah <strong>10 tahun</strong> kita bareng. Rasanya baru kemarin kita mulai, tapi ternyata udah sedekade aja.</p>
+            
+            <p>Thanks banget udah jadi bagian penting dalam hidup aku selama ini. Kamu udah nemenin aku di saat senang dan susah, udah jadi tempat cerita, temen ketawa, dan partner in crime aku.</p>
+            
+            <p>Semoga kita bisa terus bareng dan bikin lebih banyak kenangan indah lagi ke depannya.</p>
+            
+            <p><strong>Enjoy your special day, you deserve all the best things!</strong></p>
+            
+            <p class="years">✨ 10 Years Together ✨</p>
+            
+            <p class="signature">Love you so much! 🎂❤️</p>
+            <p class="signature">- Veron Ihza Brammasta</p>
         </div>
     </div>
 </body>
